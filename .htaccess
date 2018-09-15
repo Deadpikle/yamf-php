@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    # from https://stackoverflow.com/a/9694267/3938401
+    # extra help at https://stackoverflow.com/a/36675646/3938401
+
+    # ignoring specific folders: https://stackoverflow.com/questions/3414015/redirect-site-with-htaccess-but-exclude-one-folder
+
+    RewriteEngine On
+    Options -Indexes
+    
+    # Items to not shove through router.php routing
+    # https://stackoverflow.com/a/40758955/3938401
+    # Example: 
+    # RewriteRule ^(analytics) - [L]
+        
+    # Run everything else but real files through router.php
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ init.php/$1?%{QUERY_STRING} [L]
+</IfModule>

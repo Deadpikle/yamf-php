@@ -1,0 +1,4 @@
+<div id="index">
+    <h2 id="main-site-text">About this website and its creator</h2>
+    <p class="message"><a href="https://github.com/Deadpikle/YAMF" target="_blank">YAMF</a> (Yet Another MVC Framework) is a simple, small, open-source PHP MVC framework with no external dependencies built by <a href="https://github.com/Deadpikle" target="_blank">Deadpikle</a>, who programs in everything from native mobile apps to websites to desktop applications. This is set up in the demo application as a static web page that doesn't have an associated controller. If you like the framework, why not give it a *star* on GitHub? If you think it's missing something, file a feature request or open a pull request!</p>
+</div>

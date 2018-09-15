@@ -1,0 +1,6 @@
+.DS_Store
+*.DS_Store
+composer.phar
+/vendor/
+vendor/*
+config.php
