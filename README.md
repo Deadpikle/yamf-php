@@ -128,7 +128,7 @@ I've included some default session logic commented out in `config.sample.php`. F
 
 ## Can I help contribute?
 
-Glad you asked! There are always things that can be done on an open-source projecet: fix bugs, new features, and more! Check out the issues tab of this repository and take a look at what bugs have been reported and which features have been requested. There's some more info on contributing in the [Contributing](CONTRIBUTING.md) document.
+Glad you asked! There are always things that can be done on an open-source project: fix bugs, new features, and more! Check out the issues tab of this repository and take a look at what bugs have been reported and which features have been requested. There's some more info on contributing in the [Contributing](CONTRIBUTING.md) document.
 
 ## License
 
