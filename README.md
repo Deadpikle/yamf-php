@@ -114,7 +114,7 @@ The easiest way for you to extend this framework is to derive from `Response` (o
 
 ### Static page simplicity
 
-One nifty feature that YAMF supports is static web pages that don't require a `route` or a `controller`. If you want `/about` to just be a simple page, throw an `about.php` page in the `views/static/` folder and -- bam! -- `/about` works on your website. What subfolders like `/blog/post-name`? That works too! Add a `views/static/blog/post-name.php` file and it Just Works (tm)! You can use this to still have pretty URLs on your website without bothering with adding routes and controllers.
+One nifty feature that YAMF supports is static web pages that don't require a `route` or a `controller`. If you want `/about` to just be a simple page, throw an `about.php` page in the `views/static/` folder and -- bam! -- `/about` works on your website. What about subfolders like `/blog/post-name`? That works too! Add a `views/static/blog/post-name.php` file and it Just Works (tm)! You can use this to still have pretty URLs on your website without bothering with adding routes and controllers.
 
 **Note that the router attempts to match a `router.php` route before checking for static pages.**
 
