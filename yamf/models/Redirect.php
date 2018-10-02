@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Response.php';
+require_once 'yamf/functions.php';
 
 class Redirect extends Response {
 
@@ -12,12 +13,13 @@ class Redirect extends Response {
     public function __construct($redirectPath, $isInternalRedirect = true) {
         parent::__construct(302);
         $this->redirectPath = $redirectPath;
+        $this->isInternalSiteRedirect = $isInternalRedirect;
     }
 
     public function output($app) {
         parent::output($app);
         if ($this->isInternalSiteRedirect) {
-            header("Location: " . $app->basePath . $this->redirectPath);
+            header("Location: " . yurl($app, $this->redirectPath));
         }
         else {
             header("Location: " . $this->redirectPath);
