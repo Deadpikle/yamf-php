@@ -8,6 +8,14 @@
     }
 
     /**
+     * Checks to see if $haystack starts with $needle.
+     */
+    function starts_with($haystack, $needle) {
+        $length = strlen($needle);
+        return strlen($haystack) >= $length && substr($haystack, 0, $length) === $needle;
+    }
+
+    /**
      * Removes empty strings ('') from an array.
      * Modifies original array
      */
@@ -18,6 +26,13 @@
                 $i--;
             }
         }
+    }
+
+    function yurl($app, $path) {
+        if (!starts_with($path, '/')) {
+            return $app->basePath . '/' . $path;   
+        }
+        return $app->basePath . $path;
     }
 
     function isPostRequest() {
