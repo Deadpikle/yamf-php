@@ -110,7 +110,7 @@ In addition to those, there are two variables available that are set up in `init
 
 ### Subclassing for extending the framework
 
-The easiest way for you to extend this framework is to derive from `Response` (or some other `Response` child class) and/or create a parent class for some of your controllers. For example, by deriving from `View`, you could change the view output to use [Twig](https://twig.symfony.com/) templating engine instead of just simple PHP output. By creating a parent class for your controllers, you could add things like validation or other extra processing of data that has to happen for all of your API routes, such as verifying a username/password or token. The options are endless and the potential great!
+The easiest way for you to extend this framework is to derive from `Response` (or some other `Response` child class) and/or create a parent class for some of your controllers. For example, by deriving from `View`, you could change the view output to use the [Twig](https://twig.symfony.com/) templating engine instead of just simple PHP output. By creating a parent class for your controllers, you could add things like validation or other extra processing of data that has to happen for all of your API routes, such as verifying a username/password or token. The options are endless and the potential great!
 
 ### Static page simplicity
 
