@@ -94,7 +94,7 @@ Two main variables are sent into your controller methods from the route: `$app` 
 In addition to those, there are two variables available that are set up in `init.php`:
 
 * `$app->isLocalHost` -- whether or not the application is running on local host (`127.0.0.1` or `::1`)
-* `$app->basePath` -- the base directory for your current web application. This can be used to allow for nested web applications on your web server. I *strongly* recommend making use of this variable in your `views` when doing local website links so that if you move files around or later move things into a subfolder everything doesn't break.
+* `$app->basePath` -- the base directory for your current web application. This can be used to allow for nested web applications on your web server. I *strongly* recommend making use of this variable in your `views` when doing local website links so that if you move files around or later move things into a subfolder everything doesn't break. To link to another page on your site, just use the `yurl` (YAMF URL) function like this: `<?= yamf($app, '/path/to/page') ?>`.
 
 #### `$request`
 
