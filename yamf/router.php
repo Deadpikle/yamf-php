@@ -7,7 +7,7 @@
 
     $request = $_SERVER['REQUEST_URI'];
 
-    if (ends_with($request, '.php')) {
+    if (str_ends_with($request, '.php')) {
         // redirect to non-php file -- only works if file doesn't actually exist
         $request = substr($request, 0, -4);
         header("Location: $request");

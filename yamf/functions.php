@@ -2,7 +2,7 @@
     /**
      * Checks to see if $haystack ends with $needle.
      */
-    function ends_with($haystack, $needle) {
+    function str_ends_with($haystack, $needle) {
         $length = strlen($needle);
         return $length === 0 || (substr($haystack, -$length) === $needle);
     }
@@ -10,7 +10,7 @@
     /**
      * Checks to see if $haystack starts with $needle.
      */
-    function starts_with($haystack, $needle) {
+    function str_starts_with($haystack, $needle) {
         $length = strlen($needle);
         return strlen($haystack) >= $length && substr($haystack, 0, $length) === $needle;
     }
@@ -29,7 +29,7 @@
     }
 
     function yurl($app, $path) {
-        if (!starts_with($path, '/')) {
+        if (!str_starts_with($path, '/')) {
             return $app->basePath . '/' . $path;   
         }
         return $app->basePath . $path;
