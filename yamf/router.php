@@ -50,7 +50,7 @@
                 }
                 else if ($app->isShortURLEnabled && isset($app->db)) {
                     // see if route is a shortened URL since it isn't a static page
-                    $potentialRoute = loadShortenedURL($potentialFileName, $app->db);
+                    $potentialRoute = loadShortenedURL($fixedPath, $app->db);
                     if ($potentialRoute !== NULL && $potentialRoute != "") {
                         header("Location: $potentialRoute");
                         die();
