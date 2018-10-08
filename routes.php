@@ -2,12 +2,12 @@
 
     // Format: basic route string (starts with /) => [class name in controllers folder, function name].
     // if you want to specify GET or POST, you can do so as the first param before the class name.
-    // if you want the same route URL to have both GET and POST to separate functions, use a 
+    // if you want the same route URL to have both GET and POST to separate functions, use a
     // multi-dimensional array (MUST specify all 3 params in this case):
     // 'route' => [['GET', 'FooController', 'get_method'],
     //             ['POST', 'BarController', 'post_method']]
 
-    // 'GET' is optional, but 'POST' is required in the route definition for post requests. 
+    // 'GET' is optional, but 'POST' is required in the route definition for post requests.
     // We only accept GET and POST at the moment.
     // 'GET' and 'POST' do not need to be in all caps.
 
@@ -57,6 +57,6 @@
         '/' => ['HomeController', 'index'],
         '/index' => ['HomeController', 'index'],
         '/blog' => ['BlogController', 'index'],
-        '/blog/write' => ['BlogController', 'write_post'],        
-        '/blog/{id}' => ['BlogController', 'view_post'],
+        '/blog/write' => ['BlogController', 'writePost'],
+        '/blog/{id}' => ['BlogController', 'viewPost'],
     ];

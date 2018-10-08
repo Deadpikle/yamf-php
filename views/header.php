@@ -1,25 +1,25 @@
 <?php
-    $currentRequest = str_replace($app->basePath, '', $_SERVER['REQUEST_URI']);
-    if (str_ends_with($currentRequest, '/')) {
-        $currentRequest = substr($currentRequest, 0, -1);
-    }
-    $currentRequest = str_replace("/", "", $currentRequest);
+$currentRequest = str_replace($app->basePath, '', $_SERVER['REQUEST_URI']);
+if (str_ends_with($currentRequest, '/')) {
+    $currentRequest = substr($currentRequest, 0, -1);
+}
+$currentRequest = str_replace("/", "", $currentRequest);
 
-    function navbar_link($name, $path, $basePath, $currentRequest) {
-        // figure out whether the current navbar item is active or not based on the URL
-        $isCurrent = FALSE;
-        $pathNoSlashes = str_replace("/", "", $path);
-        if ($path === "/" && $currentRequest === "") {
-            $isCurrent = TRUE;
-        }
-        else if ($currentRequest !== "" && $pathNoSlashes != "" && strpos($currentRequest, $pathNoSlashes) !== FALSE) {
-            $isCurrent = TRUE;
-        }
-        $liClass = $isCurrent ? "active" : "";
-        return '<li class="' . $liClass . '"><a href="' . $basePath . $path . '">' . $name . '</a></li>';
+function navbar_link($name, $path, $basePath, $currentRequest)
+{
+    // figure out whether the current navbar item is active or not based on the URL
+    $isCurrent = false;
+    $pathNoSlashes = str_replace("/", "", $path);
+    if ($path === "/" && $currentRequest === "") {
+        $isCurrent = true;
+    } elseif ($currentRequest !== "" && $pathNoSlashes != "" && strpos($currentRequest, $pathNoSlashes) !== false) {
+        $isCurrent = true;
     }
+    $liClass = $isCurrent ? "active" : "";
+    return '<li class="' . $liClass . '"><a href="' . $basePath . $path . '">' . $name . '</a></li>';
+}
 
-    $title = isset($title) ? trim($title) . " - YAMF" : "YAMF";
+$title = isset($title) ? trim($title) . " - YAMF" : "YAMF";
 ?>
 <!DOCTYPE html>
 <html lang="en">

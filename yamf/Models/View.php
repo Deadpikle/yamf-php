@@ -2,14 +2,16 @@
 
 namespace Yamf\Models;
 
-class View extends Response {
+class View extends Response
+{
     public $name;
     public $data;
     public $title; // (default: '')
     public $headerName; // e.g. 'templates/admin-header' (default: views/header.php)
     public $footerName; // e.g. 'admin/footer' (default: views/header.php)
 
-    public function __construct($name, $data = [], $title = '', $headerName = '', $footerName = '') {
+    public function __construct($name, $data = [], $title = '', $headerName = '', $footerName = '')
+    {
         parent::__construct();
         $this->name = $name;
         $this->data = $data;
@@ -18,7 +20,8 @@ class View extends Response {
         $this->footerName = $footerName;
     }
 
-    public function output($app) {
+    public function output($app)
+    {
         parent::output($app);
         
         if ($this->data != null) {
@@ -31,17 +34,15 @@ class View extends Response {
 
         if ($this->headerName != null && $this->headerName !== '') {
             require 'views/' . $this->headerName . '.php';
-        }
-        else if ($app->defaultHeaderName !== null) {
+        } elseif ($app->defaultHeaderName !== null) {
             require 'views/' . $app->defaultHeaderName . '.php';
         }
         
-        require 'views/' . $this->name . '.php'; 
+        require 'views/' . $this->name . '.php';
 
         if ($this->footerName != null && $this->footerName !== '') {
             require 'views/' . $this->footerName . '.php';
-        }
-        else if ($app->defaultFooterName !== null) {
+        } elseif ($app->defaultFooterName !== null) {
             require 'views/' . $app->defaultFooterName . '.php';
         }
     }
