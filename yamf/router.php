@@ -1,6 +1,6 @@
 <?php
 
-    use Yamf\models\View;
+    use Yamf\models\Response;
 
     require_once 'routes.php';
     require_once 'yamf/functions.php';
@@ -21,7 +21,7 @@
         $controller = new $request->controller;
         $data = $controller->{$request->function}($app, $request);
         if ($data != null) {
-            /** @var View $data */
+            /** @var Response $data */
             $data->output($app);
         }
     }

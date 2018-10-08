@@ -7,7 +7,7 @@ use Yamf\models\View;
 
 class HomeController {
 
-    public function index(\stdClass $app, Request $request) {
+    public function index($app, Request $request) {
         return new View('home/index', null, 'Home');
     }
 }
