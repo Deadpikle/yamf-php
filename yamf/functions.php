@@ -1,6 +1,6 @@
 <?php
 
-    use Yamf\models\Request;
+    use Yamf\Models\Request;
 
     /**
      * Checks to see if $haystack ends with $needle.

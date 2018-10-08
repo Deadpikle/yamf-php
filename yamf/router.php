@@ -1,6 +1,6 @@
 <?php
 
-    use Yamf\models\Response;
+    use Yamf\Models\Response;
 
     require_once 'routes.php';
     require_once 'yamf/functions.php';

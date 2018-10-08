@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
-use Yamf\models\Request;
-use Yamf\models\View;
+use Yamf\Models\Request;
+use Yamf\Models\View;
 
 class HomeController {
 

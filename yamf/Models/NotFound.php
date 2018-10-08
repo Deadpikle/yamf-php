@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\models;
+namespace Yamf\Models;
 
 /**
  * Simple wrapper around View to send back a 404 status code and the 404.php view

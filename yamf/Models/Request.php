@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\models;
+namespace Yamf\Models;
 
 class Request {
     public $route; // raw route string for this request

@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\models;
+namespace Yamf\Models;
 
 class Response {
     public $statusCode;
