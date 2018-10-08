@@ -1,6 +1,6 @@
 <?php
 
-require_once 'View.php';
+namespace Yamf\models;
 
 /**
  * Simple wrapper around View to send back a 404 status code and the 404.php view
@@ -16,5 +16,3 @@ class NotFound extends View {
         parent::output($app);
     }
 }
-
-?>

@@ -1,4 +1,7 @@
 <?php
+
+    use Yamf\models\Request;
+
     /**
      * Checks to see if $haystack ends with $needle.
      */
@@ -163,11 +166,11 @@
                 $output = new Request();
                 $output->route = $route;
                 if (count($path) == 2) {
-                    $output->controller = $path[0];
+                    $output->controller = '\Controllers\\' . $path[0];
                     $output->function = $path[1];
                 }
                 else if (count($path) == 3) {
-                    $output->controller = $path[1];
+                    $output->controller = '\Controllers\\' . $path[1];
                     $output->function = $path[2];
                 }
                 $output->routeParams = $foundParams;
@@ -179,5 +182,3 @@
         }
         return null;
     }
-
-?>

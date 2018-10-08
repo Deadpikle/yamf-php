@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Response.php';
+namespace Yamf\models;
 
 class JsonResponse extends Response {
     public $data;
@@ -17,5 +17,3 @@ class JsonResponse extends Response {
         echo json_encode($this->data, $this->jsonEncodeOptions);
     }
 }
-
-?>

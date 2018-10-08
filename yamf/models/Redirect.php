@@ -1,7 +1,6 @@
 <?php
 
-require_once 'Response.php';
-require_once 'yamf/functions.php';
+namespace Yamf\models;
 
 class Redirect extends Response {
 
@@ -27,5 +26,3 @@ class Redirect extends Response {
         die();
     }
 }
-
-?>

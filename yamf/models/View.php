@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Response.php';
+namespace Yamf\models;
 
 class View extends Response {
     public $name;
@@ -46,5 +46,3 @@ class View extends Response {
         }
     }
 }
-
-?>

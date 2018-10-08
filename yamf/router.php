@@ -1,8 +1,8 @@
 <?php
 
+    use Yamf\models\View;
+
     require_once 'routes.php';
-    require_once 'yamf/models/Request.php';
-    require_once 'yamf/models/View.php';
     require_once 'yamf/functions.php';
 
     $request = $_SERVER['REQUEST_URI'];
@@ -18,10 +18,10 @@
 
     $request = find_route($routes, $requestURL);
     if ($request !== null) {
-        require_once 'controllers/' . $request->controller . '.php';
         $controller = new $request->controller;
         $data = $controller->{$request->function}($app, $request);
         if ($data != null) {
+            /** @var View $data */
             $data->output($app);
         }
     }
@@ -67,4 +67,4 @@
             require_once 'views/' . $app->_404FooterName . '.php';
         }
     }
-?>
+
