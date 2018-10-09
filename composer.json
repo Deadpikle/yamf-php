@@ -1,0 +1,15 @@
+{
+    "name": "deadpikle/yamf-php",
+    "require": {
+        "php": "^7.0",
+        "ext-pdo": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yamf\\": "yamf/",
+            "Controllers\\": "controllers/",
+            "Models\\": "models/"
+        }
+    }
+}

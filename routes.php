@@ -60,4 +60,3 @@
         '/blog/write' => ['BlogController', 'write_post'],        
         '/blog/{id}' => ['BlogController', 'view_post'],
     ];
-?>
