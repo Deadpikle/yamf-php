@@ -46,14 +46,12 @@ if ($request !== null) {
                     require_once 'views/' . $app->staticPageFooterName . '.php';
                 }
                 die();
-            } else {
-                if ($app->isShortURLEnabled && isset($app->db)) {
-                    // see if route is a shortened URL since it isn't a static page
-                    $potentialRoute = loadShortenedURL($fixedPath, $app->db);
-                    if ($potentialRoute !== null && $potentialRoute != "") {
-                        header("Location: $potentialRoute");
-                        die();
-                    }
+            } elseif ($app->isShortURLEnabled && isset($app->db)) {
+                // see if route is a shortened URL since it isn't a static page
+                $potentialRoute = loadShortenedURL($fixedPath, $app->db);
+                if ($potentialRoute !== null && $potentialRoute != "") {
+                    header("Location: $potentialRoute");
+                    die();
                 }
             }
         }

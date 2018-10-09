@@ -145,27 +145,19 @@ function find_route(array $routes, string $request)
                     if (strtolower($potentialPath[0]) == 'get' && !$isPost) {
                         $path = $potentialPath;
                         break;
-                    } else {
-                        if (strtolower($potentialPath[0]) == 'post' && $isPost) {
-                            $path = $potentialPath;
-                            break;
-                        }
+                    } elseif (strtolower($potentialPath[0]) == 'post' && $isPost) {
+                        $path = $potentialPath;
+                        break;
                     }
                 }
             }
-        } else {
-            if (count($path) == 2 && $isPost) {
-                continue; // didn't match up as the route is a GET route
-            } else {
-                if (count($path) === 3) {
-                    if (strtolower($path[0]) === 'get' && $isPost) {
-                        continue;
-                    } else {
-                        if (strtolower($path[0]) === 'post' && !$isPost) {
-                            continue;
-                        }
-                    }
-                }
+        } elseif (count($path) == 2 && $isPost) {
+            continue; // didn't match up as the route is a GET route
+        } elseif (count($path) === 3) {
+            if (strtolower($path[0]) === 'get' && $isPost) {
+                continue;
+            } elseif (strtolower($path[0]) === 'post' && !$isPost) {
+                continue;
             }
         }
 
@@ -181,11 +173,9 @@ function find_route(array $routes, string $request)
             if ($routeParseResult !== 0 && $routeParseResult !== false) {
                 // found a match! match will be in array location 1
                 $foundParams[$matches[1]] = $requestParts[$i];
-            } else {
-                if ($requestParts[$i] !== $routeParts[$i]) {
-                    $didFind = false;
-                    break;
-                }
+            } elseif ($requestParts[$i] !== $routeParts[$i]) {
+                $didFind = false;
+                break;
             }
         }
         // found it? return the output!
@@ -195,11 +185,9 @@ function find_route(array $routes, string $request)
             if (count($path) == 2) {
                 $output->controller = '\Controllers\\' . $path[0];
                 $output->function = $path[1];
-            } else {
-                if (count($path) == 3) {
-                    $output->controller = '\Controllers\\' . $path[1];
-                    $output->function = $path[2];
-                }
+            } elseif (count($path) == 3) {
+                $output->controller = '\Controllers\\' . $path[1];
+                $output->function = $path[2];
             }
 
             // since we use PSR-4 and need \ for the "path" to controllers,
