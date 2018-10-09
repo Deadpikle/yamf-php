@@ -1,4 +1,7 @@
 <?php
+
+    use Yamf\Models\Request;
+
     /**
      * Checks to see if $haystack ends with $needle.
      */
@@ -163,13 +166,17 @@
                 $output = new Request();
                 $output->route = $route;
                 if (count($path) == 2) {
-                    $output->controller = $path[0];
+                    $output->controller = '\Controllers\\' . $path[0];
                     $output->function = $path[1];
                 }
                 else if (count($path) == 3) {
-                    $output->controller = $path[1];
+                    $output->controller = '\Controllers\\' . $path[1];
                     $output->function = $path[2];
                 }
+                // since we use PSR-4 and need \ for the "path" to controllers,
+                // we make it easy on users and let them use Parent-Folder/Controller-Name
+                // OR Parent-Folder\\Controller-Name in routes.php.
+                $output->controller = str_replace('/', '\\', $output->controller);
                 $output->routeParams = $foundParams;
                 $output->get = $getParams;
                 $output->anchor = $anchorOnPage;
@@ -179,5 +186,3 @@
         }
         return null;
     }
-
-?>

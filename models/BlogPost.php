@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class BlogPost {
 
     const NUMBER_OF_POSTS = 4; // arbitrary number as we aren't using a database (https://xkcd.com/221)
@@ -35,5 +37,3 @@ class BlogPost {
     }
 
 }
-
-?>

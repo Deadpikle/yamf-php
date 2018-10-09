@@ -1,8 +1,8 @@
 <?php
 
+    use Yamf\Models\Response;
+
     require_once 'routes.php';
-    require_once 'yamf/models/Request.php';
-    require_once 'yamf/models/View.php';
     require_once 'yamf/functions.php';
 
     $request = $_SERVER['REQUEST_URI'];
@@ -18,10 +18,10 @@
 
     $request = find_route($routes, $requestURL);
     if ($request !== null) {
-        require_once 'controllers/' . $request->controller . '.php';
         $controller = new $request->controller;
         $data = $controller->{$request->function}($app, $request);
         if ($data != null) {
+            /** @var Response $data */
             $data->output($app);
         }
     }
@@ -50,7 +50,7 @@
                 }
                 else if ($app->isShortURLEnabled && isset($app->db)) {
                     // see if route is a shortened URL since it isn't a static page
-                    $potentialRoute = loadShortenedURL($potentialFileName, $app->db);
+                    $potentialRoute = loadShortenedURL($fixedPath, $app->db);
                     if ($potentialRoute !== NULL && $potentialRoute != "") {
                         header("Location: $potentialRoute");
                         die();
@@ -67,4 +67,4 @@
             require_once 'views/' . $app->_404FooterName . '.php';
         }
     }
-?>
+

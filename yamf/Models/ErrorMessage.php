@@ -1,6 +1,6 @@
 <?php
 
-require_once 'View.php';
+namespace Yamf\Models;
 
 /**
  * Simple wrapper around View to send back a 400 status code and the error.php view. 
@@ -11,9 +11,8 @@ require_once 'View.php';
  */
 class ErrorMessage extends View {
     public function __construct($msg = '', $name = 'error', $title = '', $headerName = '', $footerName = '') {
-        if ($msg == null || $msg == '') {
-            $msg !== '' ? $msg : 'Sorry, the server encountered an error while performing your request!';
-        }
+        $msg = $msg ?? 'Sorry, the server encountered an error while performing your request!';
+
         parent::__construct($name, ['error' => $msg], $title, $headerName, $footerName);
         $this->statusCode = 400;
     }
@@ -22,5 +21,3 @@ class ErrorMessage extends View {
         parent::output($app);
     }
 }
-
-?>

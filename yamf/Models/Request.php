@@ -1,5 +1,7 @@
 <?php
 
+namespace Yamf\Models;
+
 class Request {
     public $route; // raw route string for this request
     public $controller; // string name of controller
@@ -19,5 +21,3 @@ class Request {
         $this->anchor = '';
     }
 }
-
-?>
