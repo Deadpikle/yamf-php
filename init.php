@@ -3,6 +3,10 @@
     if (file_exists('vendor/autoload.php')) {
         require_once 'vendor/autoload.php';
     }
+    else {
+        echo 'Please install <a href="https://getcomposer.org">Composer</a> and run `composer install`! Thanks!';
+        die();
+    }
 
     // Setup $app variable for application wide variables that you might need in 
     // controllers or in views (e.g. database connection)
