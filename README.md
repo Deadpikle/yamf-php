@@ -19,7 +19,7 @@ Minimum requirements: PHP 7.0+.
 
 ## Wait! Where's the database migration library / view templating logic / unit testing library / {other framework here}?!
 
-They're not here, and they're not here on purpose! YAMF was purposefully written to not use any external dependencies to lower the barrier of entry to using the MVC paradigm in PHP. If you want any of those things, just pull them in with your favorite dependency manager (like [Composer](https://getcomposer.org)). Since Composer is already necessary to run this project for PSR-4 autoloading, we recommend using Composer. `vendor/autoload.php` is already included for you in `init.php`.
+They're not here, and they're not here on purpose! YAMF was purposefully written to not use any external dependencies other than Composer's autoloader to lower the barrier of entry to using the MVC paradigm in PHP. If you want any of those things, just pull them in with your favorite dependency manager (like [Composer](https://getcomposer.org)). Since Composer is already necessary to run this project for PSR-4 autoloading, we recommend using Composer. `vendor/autoload.php` is already included for you in `init.php`.
 
 For a note regarding view templating, see the section on subclassing.
 
