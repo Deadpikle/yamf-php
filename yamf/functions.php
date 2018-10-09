@@ -200,16 +200,18 @@ function find_route(array $routes, string $request)
                     $output->controller = '\Controllers\\' . $path[1];
                     $output->function = $path[2];
                 }
-                // since we use PSR-4 and need \ for the "path" to controllers,
-                // we make it easy on users and let them use Parent-Folder/Controller-Name
-                // OR Parent-Folder\\Controller-Name in routes.php.
-                $output->controller = str_replace('/', '\\', $output->controller);
-                $output->routeParams = $foundParams;
-                $output->get = $getParams;
-                $output->anchor = $anchorOnPage;
-                $output->post = $_POST;
-                return $output;
             }
+
+            // since we use PSR-4 and need \ for the "path" to controllers,
+            // we make it easy on users and let them use Parent-Folder/Controller-Name
+            // OR Parent-Folder\\Controller-Name in routes.php.
+            $output->controller = str_replace('/', '\\', $output->controller);
+            $output->routeParams = $foundParams;
+            $output->get = $getParams;
+            $output->anchor = $anchorOnPage;
+            $output->post = $_POST;
+            return $output;
         }
-        return null;
     }
+    return null;
+}
