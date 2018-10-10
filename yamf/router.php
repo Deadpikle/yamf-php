@@ -7,7 +7,7 @@ require_once 'yamf/functions.php';
 
 $request = $_SERVER['REQUEST_URI'];
 
-if (str_ends_with($request, '.php')) {
+if (strEndsWith($request, '.php')) {
     // redirect to non-php file -- only works if file doesn't actually exist
     $request = substr($request, 0, -4);
     header("Location: $request");
@@ -16,7 +16,7 @@ if (str_ends_with($request, '.php')) {
 
 $requestURL = str_replace($app->basePath, '', $request);
 
-$request = find_route($routes, $requestURL);
+$request = findRoute($routes, $requestURL);
 if ($request !== null) {
     $controller = new $request->controller;
     $data = $controller->{$request->function}($app, $request);
@@ -30,7 +30,7 @@ if ($request !== null) {
     $path = parse_url($requestURL, PHP_URL_PATH);
     if ($path != null && $path !== '') {
         $pathParts = explode('/', $path);
-        remove_empty_strings_from_array($pathParts);
+        removeEmptyStringsFromArray($pathParts);
         // ok, the desired path is in the final section
         $pathCount = count($pathParts);
         if ($pathCount > 0) {

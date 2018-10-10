@@ -8,7 +8,7 @@ use Yamf\Models\Request;
  * @param string $needle
  * @return bool
  */
-function str_ends_with(string $haystack, string $needle): bool
+function strEndsWith(string $haystack, string $needle): bool
 {
     $length = strlen($needle);
     return $length === 0 || (substr($haystack, -$length) === $needle);
@@ -20,7 +20,7 @@ function str_ends_with(string $haystack, string $needle): bool
  * @param string $needle
  * @return bool
  */
-function str_starts_with(string $haystack, string $needle): bool
+function strStartsWith(string $haystack, string $needle): bool
 {
     $length = strlen($needle);
     return strlen($haystack) >= $length && substr($haystack, 0, $length) === $needle;
@@ -30,7 +30,7 @@ function str_starts_with(string $haystack, string $needle): bool
  * Removes empty strings ('') from an array.
  * Modifies original array
  */
-function remove_empty_strings_from_array(&$arr)
+function removeEmptyStringsFromArray(&$arr)
 {
     for ($i = 0; $i < count($arr); $i++) {
         if ($arr[$i] === '') {
@@ -42,7 +42,7 @@ function remove_empty_strings_from_array(&$arr)
 
 function yurl($app, string $path): string
 {
-    if (!str_starts_with($path, '/')) {
+    if (!strStartsWith($path, '/')) {
         return $app->basePath . '/' . $path;
     }
     return $app->basePath . $path;
@@ -99,7 +99,7 @@ function loadShortenedURL(string $url, $db): string
  * @param string $request
  * @return null|Request
  */
-function find_route(array $routes, string $request)
+function findRoute(array $routes, string $request)
 {
     $isPost = isPostRequest();
 
@@ -125,13 +125,13 @@ function find_route(array $routes, string $request)
 
     // now parse the actual request and find its route
     $requestParts = explode('/', $request);
-    remove_empty_strings_from_array($requestParts);
+    removeEmptyStringsFromArray($requestParts);
     $numberOfRequestParts = count($requestParts);
     // find the route
     foreach ($routes as $route => $path) {
         $routeParts = explode('/', $route);
         // remove empty request parts for ease of figuring out where we are
-        remove_empty_strings_from_array($routeParts);
+        removeEmptyStringsFromArray($routeParts);
         // a matching route will have the same number of parts
         if (count($routeParts) !== $numberOfRequestParts) {
             continue;
