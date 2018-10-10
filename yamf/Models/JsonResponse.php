@@ -2,17 +2,20 @@
 
 namespace Yamf\Models;
 
-class JsonResponse extends Response {
+class JsonResponse extends Response
+{
     public $data;
     public $jsonEncodeOptions;
     
-    public function __construct($data, $jsonEncodeOptions = 0) {
+    public function __construct($data, $jsonEncodeOptions = 0)
+    {
         parent::__construct();
         $this->data = $data;
         $this->jsonEncodeOptions = $jsonEncodeOptions;
     }
 
-    public function output($app) {
+    public function output($app)
+    {
         parent::output($app);
         echo json_encode($this->data, $this->jsonEncodeOptions);
     }

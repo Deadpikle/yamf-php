@@ -2,7 +2,8 @@
 
 namespace Yamf\Models;
 
-class Request {
+class Request
+{
     public $route; // raw route string for this request
     public $controller; // string name of controller
     public $function; // string name of controller function to call
@@ -11,7 +12,8 @@ class Request {
     public $post; // any POST params -- same format as $_POST (no extra processing performed)
     public $anchor; // If used, the # portion of the url (without the #). Router is smart enough to not match on URLs like `/blah/#/foo`.
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->route = '';
         $this->controller = '';
         $this->function = '';

@@ -78,7 +78,7 @@
         `TimesUsed` int(11) NOT NULL DEFAULT '0'
        ) ENGINE=InnoDB DEFAULT CHARSET=utf8; */
 
-    $app->isShortURLEnabled = false;    
+    $app->isShortURLEnabled = false;
 
     // Headers and Footers //
 
@@ -94,4 +94,3 @@
     $app->_404HeaderName = 'header'; // change this value if you want a different 404 header to be used by the router
     $app->_404Name = '404'; // change this value if you want a different 404 page to be used by the router
     $app->_404FooterName = 'footer'; // change this value if you want a different 404 footer to be used by the router
-?>

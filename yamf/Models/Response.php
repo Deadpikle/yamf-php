@@ -2,14 +2,17 @@
 
 namespace Yamf\Models;
 
-class Response {
+class Response
+{
     public $statusCode;
 
-    public function __construct($statusCode = 200) {
+    public function __construct($statusCode = 200)
+    {
         $this->statusCode = $statusCode;
     }
 
-    public function output($app) {
+    public function output($app)
+    {
         http_response_code($this->statusCode);
     }
 }
