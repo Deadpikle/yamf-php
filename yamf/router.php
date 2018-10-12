@@ -1,6 +1,7 @@
 <?php
 
 use Yamf\Models\Response;
+use Yamf\Models\ErrorMessage;
 
 require_once 'routes.php';
 require_once 'yamf/functions.php';
@@ -19,10 +20,23 @@ $requestURL = str_replace($app->basePath, '', $request);
 $request = findRoute($routes, $requestURL);
 if ($request !== null) {
     $controller = new $request->controller;
-    $data = $controller->{$request->function}($app, $request);
-    if ($data != null) {
-        /** @var Response $data */
-        $data->output($app);
+    try {
+        $data = $controller->{$request->function}($app, $request);
+        if ($data != null) {
+            /** @var Response $data */
+            $data->output($app);
+        }
+    } catch (\Exception $e) {
+        if (isset($app->shouldShowErrorOnExceptionThrown)) {
+            if ($app->shouldShowErrorOnExceptionThrown) {
+                $response = new ErrorMessage($e->getMessage());
+                $response->statusCode = 500;
+            }
+            else {
+                $response = new Response(500);
+            }
+            $response->output($app);
+        }
     }
 } else {
     // see if there is a static URL or shortened URL
@@ -65,4 +79,3 @@ if ($request !== null) {
         require_once 'views/' . $app->_404FooterName . '.php';
     }
 }
-
