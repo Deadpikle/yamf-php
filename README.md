@@ -1,10 +1,10 @@
 # YAMF
 
-YAMF (Yet Another MVC Framework) is a small PHP MVC framework designed to let you start using the MVC paradigm quickly without a lot of setup work. All you need is a webserver that accepts `.htaccess` files and you're pretty much good to go!
+YAMF (Yet Another MVC Framework) is a small PHP MVC framework designed to let you start using the MVC paradigm quickly without a lot of setup work. All you need is a web server that accepts `.htaccess` files and you're pretty much good to go!
 
 ## Disclaimer
 
-This project isn't necessarily meant to a display "perfect" PHP use or even the MVC paradigm. That's OK! You can still use this project to help you get your website up and running quickly without having to worry about the potentially steep learning curve of a big framework. At the very least, you get some free code organization and pretty URLs that don't have the annoying `.php` at the end!
+This project isn't necessarily meant to a display "perfect" PHP. That's OK! You can still use this project to help you get your website up and running quickly without having to worry about the potentially steep learning curve of a big MVC/other framework. At the very least, you get some free code organization and pretty URLs that don't have the annoying `.php` at the end!
 
 ## Setup
 
@@ -13,7 +13,7 @@ Minimum requirements: PHP 7.0+.
 1. Clone the repository.
 2. Make sure your web server is setup to read and utilize .htaccess files. (If you don't know what this means, please Google it! Maybe we'll add some helper links here at a later time.)
 3. Copy `config.sample.php` to `config.php`. Adjust any parameters that you want in there. (You don't need to adjust anything by default to get your site up and running.)
-4. In order for the `use Yamf/Models/XYZ` statements to work, you'll need to use [Composer](https://getcomposer.org). Doing that is pretty easy: just go to the [download page](https://getcomposer.org/download/) and run the script at the top. (Note: if you're on Windows, you'll want to follow instructions [here on the intro page](https://getcomposer.org/doc/00-intro.md).)
+4. In order for the `use Yamf/Models/XYZ` statements to work, you'll need to use [Composer](https://getcomposer.org). Using Composer is pretty easy: just go to the [download page](https://getcomposer.org/download/) and run the script at the top. (Note: if you're on Windows, you'll want to follow instructions [here on the intro page](https://getcomposer.org/doc/00-intro.md).)
 5. `composer install` (if you've got a `composer.phar` file in your directory, run `php composer.phar install`). It will sit and think for a minute.
 6. You're done! Enjoy your MVC-based website! You can rip out the default sample items and CSS, of course!
 
