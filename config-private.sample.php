@@ -4,6 +4,10 @@
 // to your repository. These are settings that you don't want shared
 // with others, such as public/private keys, database connection details, etc.
 
+// Make sure to update the sample file for a template of keys to fill out
+// on your own website!! That way, when you set up a new instance of your
+// site, you know which keys need to be filled out. :)
+
 // Some examples:
 // $app->recaptchaPrivateKey = "[key here]";
 // $app->recaptchaPublicKey = "[key here]";
