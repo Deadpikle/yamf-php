@@ -16,12 +16,6 @@
 // release notes when updating YAMF versions so that you're aware of any changes that
 // have been made!
 
-// If you want some of these to be saved in your repo instead of ignored by git,
-// just add them to an additional config file of your own name (such as my-app-config.php)
-// and require_once 'my-app-config.php' to include those settings. Remember not to
-// put any sensitive credentials in a repo where malicious users might be able
-// to grab them!
-
 // // // // // // // Session Settings // // // // // // //
 
 /*
