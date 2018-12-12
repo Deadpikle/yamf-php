@@ -45,7 +45,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp*/
 
 /* Change isShortURLEnabled to true if you want to enable routing
     logic for shortened URLs. You'll want a table with the following
-    schema available in the db with the above $app->db connection:
+    schema available in the db with the a PDO $app->db connection:
     CREATE TABLE `ShortURLs` (
     `ShortURLID` int(11) NOT NULL,
     `Slug` varchar(1000) NOT NULL,
