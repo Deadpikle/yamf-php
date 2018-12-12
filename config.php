@@ -23,6 +23,7 @@
 // It's not guaranteed to be very good, but should get you started. (Open to pull request improvements!)
 $sessionTime = 3600 * 24;
 ini_set('session.gc_maxlifetime', $sessionTime);
+session_name('yamf');
 session_start();
 
 // https://stackoverflow.com/a/1270960/3938401
