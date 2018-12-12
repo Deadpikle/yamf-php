@@ -3,5 +3,5 @@
 composer.phar
 /vendor/
 vendor/*
-config.php
 .idea
+config-private.php

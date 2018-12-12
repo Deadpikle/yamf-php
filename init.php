@@ -19,11 +19,10 @@ $whitelist = [
 $app->isLocalHost = in_array($_SERVER['REMOTE_ADDR'], $whitelist);
 $app->basePath = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__));
 
-if (file_exists('config.php')) {
-    require_once 'config.php';
-} else {
-    echo 'Please finish site setup by copying config.sample.php to config.php. Thanks!';
-    die();
+// load user configuration files
+require_once 'config.php';
+if (file_exists('config-private.php')) {
+    require_once 'config-private.php';
 }
 
 require_once 'yamf/router.php';
