@@ -1,7 +1,7 @@
 <?php
 
 // Set up any session/config parameters you need in for your website that are safe
-// to safe to your repo, such as session logic, etc. 
+// to add to your repo, such as session logic, etc. 
 // Add the info to the $app class if you want it to automatically 
 // be available to your controllers and views. This file contains 
 // some YAMF configuration parameters, too.
