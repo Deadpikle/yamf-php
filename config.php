@@ -16,6 +16,11 @@
 // release notes when updating YAMF versions so that you're aware of any changes that
 // have been made!
 
+// First, load private config so that we have a db connection if we need one for any initialization.
+if (file_exists('config-private.php')) {
+    require_once 'config-private.php';
+}
+
 // // // // // // // Session Settings // // // // // // //
 
 /*

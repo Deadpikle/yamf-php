@@ -21,8 +21,5 @@ $app->basePath = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__));
 
 // load user configuration files
 require_once 'config.php';
-if (file_exists('config-private.php')) {
-    require_once 'config-private.php';
-}
 
 require_once 'yamf/router.php';

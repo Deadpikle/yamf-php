@@ -13,7 +13,7 @@ Minimum requirements: PHP 7.0+.
 1. Clone the repository.
 2. Make sure your web server is setup to read and utilize .htaccess files. (If you don't know what this means, please Google it! Maybe we'll add some helper links here at a later time.)
 3. Configure `config.php` if necessary. Adjust any parameters that you would like in there or add new parameters to `$app`, such as session logic. By default, you don't need to adjust anything to get your site up and running.
-4. If you have any sort of database credentials, private keys, etc. that need to be used in the website, copy `config-private.sample.php` to `config-private.php` and adjust it to your needs. For instance, you can setup `$app->db` to be a `PDO` instance for your local database.
+4. If you have any sort of database credentials, private keys, etc. that need to be used in the website, copy `config-private.sample.php` to `config-private.php` and adjust it to your needs. For instance, you can setup `$app->db` to be a `PDO` instance for your local database. **Note that `config-private.php` will be loaded before anything in `config.php` takes place.
 5. In order for the `use Yamf/Models/XYZ` statements to work, you'll need to use [Composer](https://getcomposer.org). Using Composer is pretty easy: just go to the [download page](https://getcomposer.org/download/) and run the script at the top. (Note: if you're on Windows, you'll want to follow instructions [here on the intro page](https://getcomposer.org/doc/00-intro.md).)
 6. `composer install` (if you've got a `composer.phar` file in your directory, run `php composer.phar install`). It will sit and think for a minute.
 7. You're done! Enjoy your MVC-based website! You can rip out the default sample items and CSS, of course!
