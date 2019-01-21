@@ -10,6 +10,9 @@ class View extends Response
     public $headerName; // e.g. 'templates/admin-header' (default: views/header.php)
     public $footerName; // e.g. 'admin/footer' (default: views/header.php)
 
+    public $canUseDefaultHeader; // if false, will not use default header if $headerName is null. Defaults to true.
+    public $canUseDefaultFooter; // if false, will not use default footer if $footerName is null. Defaults to true.
+
     public function __construct($name, $data = [], $title = '', $headerName = '', $footerName = '')
     {
         parent::__construct();
@@ -18,6 +21,8 @@ class View extends Response
         $this->title = $title;
         $this->headerName = $headerName;
         $this->footerName = $footerName;
+        $this->canUseDefaultHeader = true;
+        $this->canUseDefaultFooter = true;
     }
 
     public function output($app)
@@ -34,7 +39,7 @@ class View extends Response
 
         if ($this->headerName != null && $this->headerName !== '') {
             require 'views/' . $this->headerName . '.php';
-        } elseif ($app->defaultHeaderName !== null) {
+        } elseif ($this->canUseDefaultHeader && $app->defaultHeaderName !== null) {
             require 'views/' . $app->defaultHeaderName . '.php';
         }
         
@@ -42,7 +47,7 @@ class View extends Response
 
         if ($this->footerName != null && $this->footerName !== '') {
             require 'views/' . $this->footerName . '.php';
-        } elseif ($app->defaultFooterName !== null) {
+        } elseif ($this->canUseDefaultFooter && $app->defaultFooterName !== null) {
             require 'views/' . $app->defaultFooterName . '.php';
         }
     }
