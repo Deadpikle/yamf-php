@@ -2,6 +2,7 @@
 
 use Yamf\Models\Response;
 use Yamf\Models\ErrorMessage;
+use Yamf\Models\NotFound;
 
 require_once 'routes.php';
 require_once 'yamf/functions.php';
@@ -71,11 +72,6 @@ if ($request !== null) {
         }
     }
     // couldn't determine route
-    if ($app->_404HeaderName !== null) {
-        require_once 'views/' . $app->_404HeaderName . '.php';
-    }
-    require_once 'views/' . $app->_404Name . '.php';
-    if ($app->_404FooterName !== null) {
-        require_once 'views/' . $app->_404FooterName . '.php';
-    }
+    $notFound = new NotFound();
+    $notFound->output($app);
 }
