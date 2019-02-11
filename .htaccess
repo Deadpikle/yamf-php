@@ -16,4 +16,9 @@
     #RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ init.php/$1?%{QUERY_STRING} [L]
+    # Deny access to files
+    # Don't forget that some of your project-specific files might need this too!
+    RewriteRule ^config-private-sample\.php$ - [F]
+    RewriteRule ^config-private\.php$ - [F]
+    RewriteRule ^config\.php$ - [F]
 </IfModule>
