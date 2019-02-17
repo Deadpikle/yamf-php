@@ -75,3 +75,4 @@ if ($request !== null) {
     $notFound = new NotFound();
     $notFound->output($app);
 }
+die();
