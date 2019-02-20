@@ -19,7 +19,7 @@
 
 // Initialize AppConfig object
 
-// If you want to change the class for $app, your class *must* derive from Yamf\Models\AppConfig
+// If you want to change the class for $app, your class *must* derive from Yamf\AppConfig
 $appConfigClass = 'Yamf\AppConfig';
 
 $whitelist = [
