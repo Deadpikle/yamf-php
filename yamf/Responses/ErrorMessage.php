@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\Models;
+namespace Yamf\Responses;
 
 /**
  * Simple wrapper around View to send back a 400 status code and the error.php view.

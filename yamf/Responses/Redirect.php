@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\Models;
+namespace Yamf\Responses;
 
 class Redirect extends Response
 {
@@ -21,7 +21,7 @@ class Redirect extends Response
     {
         parent::output($app);
         if ($this->isInternalSiteRedirect) {
-            header("Location: " . yurl($app, $this->redirectPath));
+            header("Location: " . $app->yurl($this->redirectPath));
         } else {
             header("Location: " . $this->redirectPath);
         }

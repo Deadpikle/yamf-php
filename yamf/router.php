@@ -2,21 +2,21 @@
 
 namespace Yamf;
 
-use Yamf\Models\AppConfig;
-use Yamf\Models\ErrorMessage;
-use Yamf\Models\NotFound;
-use Yamf\Models\Response;
-use Yamf\Models\Request;
+use Yamf\Util;
+use Yamf\AppConfig;
 
-require_once 'yamf/functions.php';
+use Yamf\Responses\ErrorMessage;
+use Yamf\Responses\NotFound;
+use Yamf\Responses\Response;
+use Yamf\Responses\Request;
 
 class Router
 {
     public function route(AppConfig $app, array $routes)
     {
         $request = $_SERVER['REQUEST_URI'];
-
-        if (strEndsWith($request, '.php')) {
+        
+        if (Util::strEndsWith($request, '.php')) {
             // redirect to non-php file -- only works if file doesn't actually exist
             $request = substr($request, 0, -4);
             header("Location: $request");
@@ -35,6 +35,7 @@ class Router
                     $data->output($app);
                 }
             } catch (\Exception $e) {
+                die('ohno');
                 if (isset($app->shouldShowErrorOnExceptionThrown)) {
                     if ($app->shouldShowErrorOnExceptionThrown) {
                         $response = new ErrorMessage($e->getMessage());
@@ -52,7 +53,7 @@ class Router
             $path = parse_url($requestURL, PHP_URL_PATH);
             if ($path != null && $path !== '') {
                 $pathParts = explode('/', $path);
-                removeEmptyStringsFromArray($pathParts);
+                $this->removeEmptyStringsFromArray($pathParts);
                 // ok, the desired path is in the final section
                 $pathCount = count($pathParts);
                 if ($pathCount > 0) {
@@ -70,7 +71,7 @@ class Router
                         die();
                     } elseif ($app->isShortURLEnabled && isset($app->db)) {
                         // see if route is a shortened URL since it isn't a static page
-                        $potentialRoute = loadShortenedURL($fixedPath, $app->db);
+                        $potentialRoute = $this->loadShortenedURL($fixedPath, $app->db);
                         if ($potentialRoute !== null && $potentialRoute != "") {
                             header("Location: $potentialRoute");
                             die();
@@ -95,7 +96,7 @@ class Router
      */
     function findRoute(array $routes, string $request)
     {
-        $isPost = isPostRequest();
+        $isPost = Util::isPostRequest();
 
         // Need to make sure # and ? in URL are handled properly and one doesn't interfere with the other!
         $anchorOnPage = parse_url($request, PHP_URL_FRAGMENT); // http://.../blog#comments (#comments)
@@ -119,13 +120,13 @@ class Router
 
         // now parse the actual request and find its route
         $requestParts = explode('/', $request);
-        removeEmptyStringsFromArray($requestParts);
+        $this->removeEmptyStringsFromArray($requestParts);
         $numberOfRequestParts = count($requestParts);
         // find the route
         foreach ($routes as $route => $path) {
             $routeParts = explode('/', $route);
             // remove empty request parts for ease of figuring out where we are
-            removeEmptyStringsFromArray($routeParts);
+            $this->removeEmptyStringsFromArray($routeParts);
             // a matching route will have the same number of parts
             if (count($routeParts) !== $numberOfRequestParts) {
                 continue;
@@ -196,5 +197,56 @@ class Router
             }
         }
         return null;
+    }
+
+    /**
+     * Returns NULL if no shorter URL found; destination as string if found
+     * @param string $url
+     * @param PDO $db
+     * @return string
+     */
+    function loadShortenedURL(string $url, $db): string
+    {
+        if (!isset($db)) {
+            return '';
+        }
+        $query = '
+                SELECT ShortURLID, Destination, TimesUsed
+                FROM ShortURLs
+                WHERE Slug = ?';
+        $stmt = $db->prepare($query);
+        $params = [$url];
+        $stmt->execute($params);
+        $shortenedURLs = $stmt->fetchAll();
+        if (count($shortenedURLs) > 0) {
+            $item = $shortenedURLs[0];
+            $timesUsed = (int)$item['TimesUsed'];
+            $update = '
+                    UPDATE ShortURLs SET DateLastUsed = ?, TimesUsed = ?
+                    WHERE ShortURLID = ?';
+            $params = [
+                date('Y-m-d H:i:s'),
+                $timesUsed + 1,
+                $item['ShortURLID']
+            ];
+            $stmt = $db->prepare($update);
+            $stmt->execute($params);
+            return $item['Destination'];
+        }
+        return '';
+    }
+
+    /**
+     * Removes empty strings ('') from an array.
+     * Modifies original array
+     */
+    function removeEmptyStringsFromArray(&$arr)
+    {
+        for ($i = 0; $i < count($arr); $i++) {
+            if ($arr[$i] === '') {
+                array_splice($arr, $i, 1);
+                $i--;
+            }
+        }
     }
 }

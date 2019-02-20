@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\Models;
+namespace Yamf\Responses;
 
 class View extends Response
 {

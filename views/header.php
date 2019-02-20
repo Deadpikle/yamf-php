@@ -1,6 +1,7 @@
 <?php
+
 $currentRequest = str_replace($app->basePath, '', $_SERVER['REQUEST_URI']);
-if (strEndsWith($currentRequest, '/')) {
+if (\Yamf\Util::strEndsWith($currentRequest, '/')) {
     $currentRequest = substr($currentRequest, 0, -1);
 }
 $currentRequest = str_replace("/", "", $currentRequest);
@@ -20,16 +21,17 @@ function navbar_link($name, $path, $basePath, $currentRequest)
 }
 
 $title = isset($title) ? trim($title) . " - YAMF" : "YAMF";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="<?= yurl($app, '/css/bootstrap.min.css') ?>"> <!-- from https://bootswatch.com/ -->
+        <link rel="stylesheet" href="<?= $app->yurl('/css/bootstrap.min.css') ?>"> <!-- from https://bootswatch.com/ -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="<?= yurl($app, '/css/common.css') ?>?<?= filemtime("css/common.css") ?>" />
+        <link rel="stylesheet" href="<?= $app->yurl('/css/common.css') ?>?<?= filemtime("css/common.css") ?>" />
 
         <meta property="og:title" content="<?= $title ?>" />
         <meta property="og:site_name" content="YAMF" />

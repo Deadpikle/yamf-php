@@ -1,6 +1,8 @@
 <?php
 
-namespace Yamf\Models;
+namespace Yamf;
+
+use Yamf\Util;
 
 class AppConfig
 {
@@ -28,5 +30,13 @@ class AppConfig
     {
         $this->isLocalHost = $isLocalHost;
         $this->basePath = $basePath;
+    }
+
+    public function yurl(string $path) : string
+    {
+        if (!Util::strStartsWith($path, '/')) {
+            return $this->basePath . '/' . $path;
+        }
+        return $this->basePath . $path;
     }
 }
