@@ -92,3 +92,6 @@ $app->staticPageFooterName = 'footer'; // change this value if you want a differ
 $app->_404HeaderName = 'header'; // change this value if you want a different 404 header to be used by the router
 $app->_404Name = '404'; // change this value if you want a different 404 page to be used by the router
 $app->_404FooterName = 'footer'; // change this value if you want a different 404 footer to be used by the router
+
+$app->viewExtension = '.php'; // change this value if you want to use a different file extension for your views
+$app->staticViewExtension = '.php'; // change this value if you want to use a different file extension for your static views

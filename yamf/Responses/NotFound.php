@@ -2,6 +2,8 @@
 
 namespace Yamf\Responses;
 
+use Yamf\AppConfig;
+
 /**
  * Simple wrapper around View to send back a 404 status code and the 404.php view
  */
@@ -15,7 +17,7 @@ class NotFound extends View
         $this->statusCode = 404;
     }
 
-    public function output($app)
+    public function output(AppConfig $app)
     {
         $this->name = $app->_404Name;
         $this->headerName = $app->_404HeaderName;

@@ -2,6 +2,8 @@
 
 namespace Yamf\Responses;
 
+use Yamf\AppConfig;
+
 class JsonResponse extends Response
 {
     public $data;
@@ -14,7 +16,7 @@ class JsonResponse extends Response
         $this->jsonEncodeOptions = $jsonEncodeOptions;
     }
 
-    public function output($app)
+    public function output(AppConfig $app)
     {
         parent::output($app);
         echo json_encode($this->data, $this->jsonEncodeOptions);
