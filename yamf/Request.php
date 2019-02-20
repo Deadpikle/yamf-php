@@ -1,6 +1,6 @@
 <?php
 
-namespace Yamf\Responses;
+namespace Yamf;
 
 class Request
 {

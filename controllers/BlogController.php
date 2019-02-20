@@ -6,7 +6,7 @@ use Models\BlogPost;
 use Yamf\AppConfig;
 use Yamf\Responses\ErrorMessage;
 use Yamf\Responses\NotFound;
-use Yamf\Responses\Request;
+use use Yamf\Request;
 use Yamf\Responses\View;
 
 class BlogController
