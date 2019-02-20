@@ -2,6 +2,8 @@
 
 namespace Yamf;
 
+use PDO;
+
 use Yamf\Util;
 use Yamf\AppConfig;
 
@@ -204,7 +206,7 @@ class Router
      * @param PDO $db
      * @return string
      */
-    function loadShortenedURL(string $url, $db): string
+    function loadShortenedURL(string $url, PDO $db): string
     {
         if (!isset($db)) {
             return '';
