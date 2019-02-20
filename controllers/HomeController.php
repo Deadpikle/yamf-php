@@ -3,7 +3,8 @@
 namespace Controllers;
 
 use Yamf\AppConfig;
-use use Yamf\Request;
+use Yamf\Request;
+
 use Yamf\Responses\View;
 
 class HomeController

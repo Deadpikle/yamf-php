@@ -8,7 +8,7 @@ use Yamf\AppConfig;
 use Yamf\Responses\ErrorMessage;
 use Yamf\Responses\NotFound;
 use Yamf\Responses\Response;
-use use Yamf\Request;
+use Yamf\Request;
 
 class Router
 {
@@ -35,7 +35,6 @@ class Router
                     $data->output($app);
                 }
             } catch (\Exception $e) {
-                die('ohno');
                 if (isset($app->shouldShowErrorOnExceptionThrown)) {
                     if ($app->shouldShowErrorOnExceptionThrown) {
                         $response = new ErrorMessage($e->getMessage());

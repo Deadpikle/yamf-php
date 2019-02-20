@@ -3,10 +3,11 @@
 namespace Controllers;
 
 use Models\BlogPost;
+
+use Yamf\Request;
 use Yamf\AppConfig;
 use Yamf\Responses\ErrorMessage;
 use Yamf\Responses\NotFound;
-use use Yamf\Request;
 use Yamf\Responses\View;
 
 class BlogController
