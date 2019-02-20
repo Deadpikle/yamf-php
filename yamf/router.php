@@ -53,7 +53,7 @@ class Router
             $path = parse_url($requestURL, PHP_URL_PATH);
             if ($path != null && $path !== '') {
                 $pathParts = explode('/', $path);
-                $this->removeEmptyStringsFromArray($pathParts);
+                Util::removeEmptyStringsFromArray($pathParts);
                 // ok, the desired path is in the final section
                 $pathCount = count($pathParts);
                 if ($pathCount > 0) {
@@ -120,13 +120,13 @@ class Router
 
         // now parse the actual request and find its route
         $requestParts = explode('/', $request);
-        $this->removeEmptyStringsFromArray($requestParts);
+        Util::removeEmptyStringsFromArray($requestParts);
         $numberOfRequestParts = count($requestParts);
         // find the route
         foreach ($routes as $route => $path) {
             $routeParts = explode('/', $route);
             // remove empty request parts for ease of figuring out where we are
-            $this->removeEmptyStringsFromArray($routeParts);
+            Util::removeEmptyStringsFromArray($routeParts);
             // a matching route will have the same number of parts
             if (count($routeParts) !== $numberOfRequestParts) {
                 continue;
@@ -234,19 +234,5 @@ class Router
             return $item['Destination'];
         }
         return '';
-    }
-
-    /**
-     * Removes empty strings ('') from an array.
-     * Modifies original array
-     */
-    function removeEmptyStringsFromArray(&$arr)
-    {
-        for ($i = 0; $i < count($arr); $i++) {
-            if ($arr[$i] === '') {
-                array_splice($arr, $i, 1);
-                $i--;
-            }
-        }
     }
 }

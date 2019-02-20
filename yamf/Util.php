@@ -32,4 +32,18 @@ class Util
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
+
+    /**
+     * Removes empty strings ('') from an array.
+     * Modifies original array
+     */
+    public function removeEmptyStringsFromArray(&$arr)
+    {
+        for ($i = 0; $i < count($arr); $i++) {
+            if ($arr[$i] === '') {
+                array_splice($arr, $i, 1);
+                $i--;
+            }
+        }
+    }
 }
