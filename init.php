@@ -1,5 +1,7 @@
 <?php
 
+use Yamf\Router;
+
 if (file_exists('vendor/autoload.php')) {
     require_once 'vendor/autoload.php';
 } else {
@@ -7,8 +9,12 @@ if (file_exists('vendor/autoload.php')) {
     die();
 }
 
-// load configuration
+// load configuration (sets up AppConfig $app)
 require_once 'config.php';
 
+// load routes
+require_once 'routes.php';
+
 // route the request
-require_once 'yamf/router.php';
+$router = new Router();
+$router->route($app, $routes);
