@@ -89,9 +89,9 @@ $app->defaultFooterName = 'footer'; // change this value if you want a different
 $app->staticPageHeaderName = 'header'; // change this value if you want a different header for static pages
 $app->staticPageFooterName = 'footer'; // change this value if you want a different footer for static pages
 
-$app->_404HeaderName = 'header'; // change this value if you want a different 404 header to be used by the router
-$app->_404Name = '404'; // change this value if you want a different 404 page to be used by the router
-$app->_404FooterName = 'footer'; // change this value if you want a different 404 footer to be used by the router
+$app->notFoundHeaderName = 'header'; // change this value if you want a different 404 header to be used by Yamf\Responses\NotFound
+$app->notFoundViewName = '404'; // change this value if you want a different 404 page to be used by Yamf\Responses\NotFound
+$app->notFoundFooterName = 'footer'; // change this value if you want a different 404 footer to be used by Yamf\Responses\NotFound
 
 $app->viewsFolderName = 'views/'; // this is the folder path (including trailing slash) from the root dir to the views directory
 $app->staticViewsFolderName = 'views/static/'; // this is the folder path (including trailing slash) from the root dir to the static views directory

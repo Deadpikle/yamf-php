@@ -19,9 +19,9 @@ class NotFound extends View
 
     public function output(AppConfig $app)
     {
-        $this->name = $app->_404Name;
-        $this->headerName = $app->_404HeaderName;
-        $this->footerName = $app->_404FooterName;
+        $this->name = $app->notFoundHeaderName;
+        $this->headerName = $app->notFoundViewName;
+        $this->footerName = $app->notFoundFooterName;
         parent::output($app);
     }
 }
