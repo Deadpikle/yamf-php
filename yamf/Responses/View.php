@@ -40,17 +40,17 @@ class View extends Response
         }
 
         if ($this->headerName != null && $this->headerName !== '') {
-            require 'views/' . $this->headerName . $app->viewExtension;
+            require $app->viewsFolderName . $this->headerName . $app->viewExtension;
         } elseif ($this->canUseDefaultHeader && $app->defaultHeaderName !== null) {
-            require 'views/' . $app->defaultHeaderName . $app->viewExtension;
+            require $app->viewsFolderName . $app->defaultHeaderName . $app->viewExtension;
         }
         
-        require 'views/' . $this->name . $app->viewExtension;
+        require $app->viewsFolderName . $this->name . $app->viewExtension;
 
         if ($this->footerName != null && $this->footerName !== '') {
-            require 'views/' . $this->footerName . $app->viewExtension;
+            require $app->viewsFolderName . $this->footerName . $app->viewExtension;
         } elseif ($this->canUseDefaultFooter && $app->defaultFooterName !== null) {
-            require 'views/' . $app->defaultFooterName . $app->viewExtension;
+            require $app->viewsFolderName . $app->defaultFooterName . $app->viewExtension;
         }
     }
 }

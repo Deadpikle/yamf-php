@@ -93,5 +93,8 @@ $app->_404HeaderName = 'header'; // change this value if you want a different 40
 $app->_404Name = '404'; // change this value if you want a different 404 page to be used by the router
 $app->_404FooterName = 'footer'; // change this value if you want a different 404 footer to be used by the router
 
+$app->viewsFolderName = 'views/'; // this is the folder path (including trailing slash) from the root dir to the views directory
+$app->staticViewsFolderName = 'views/static/'; // this is the folder path (including trailing slash) from the root dir to the static views directory
+
 $app->viewExtension = '.php'; // change this value if you want to use a different file extension for your views
 $app->staticViewExtension = '.php'; // change this value if you want to use a different file extension for your static views

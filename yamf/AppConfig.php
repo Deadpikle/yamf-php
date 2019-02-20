@@ -22,6 +22,8 @@ class AppConfig
     public $_404Name; // change this value if you want a different 404 page to be used by the router
     public $_404FooterName; // change this value if you want a different 404 footer to be used by the router
 
+    public $viewsFolderName; // this is the folder path (including trailing slash) from the root dir to the views directory
+    public $staticViewsFolderName; // this is the folder path (including trailing slash) from the root dir to the static views directory
     public $viewExtension; // change this value if you want to use a different file extension for your views
     public $staticViewExtension; // change this value if you want to use a different file extension for your static views
     

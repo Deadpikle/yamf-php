@@ -58,15 +58,15 @@ class Router
                 $pathCount = count($pathParts);
                 if ($pathCount > 0) {
                     $fixedPath = implode('/', $pathParts);
-                    $potentialFileName = 'views/static/' . $fixedPath . $app->staticViewExtension;
+                    $potentialFileName = $app->staticViewsFolderName . $fixedPath . $app->staticViewExtension;
                     if (file_exists($potentialFileName)) {
                         $title = ucfirst($pathParts[$pathCount - 1]);
                         if ($app->staticPageHeaderName != null) {
-                            require_once 'views/' . $app->staticPageHeaderName . $app->staticViewExtension;
+                            require_once $app->viewsFolderName . $app->staticPageHeaderName . $app->staticViewExtension;
                         }
                         require_once $potentialFileName;
                         if ($app->staticPageFooterName != null) {
-                            require_once 'views/' . $app->staticPageFooterName . $app->staticViewExtension;
+                            require_once $app->viewsFolderName . $app->staticPageFooterName . $app->staticViewExtension;
                         }
                         die();
                     } elseif ($app->isShortURLEnabled && isset($app->db)) {
