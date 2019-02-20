@@ -16,6 +16,22 @@
 // release notes when updating YAMF versions so that you're aware of any changes that
 // have been made!
 
+
+// Initialize AppConfig object
+
+// If you want to change the class for $app, your class *must* derive from Yamf\Models\AppConfig
+$appConfigClass = 'Yamf\Models\AppConfig';
+
+$whitelist = [
+    '127.0.0.1',
+    '::1'
+];
+
+$app = new $appConfigClass(
+    in_array($_SERVER['REMOTE_ADDR'], $whitelist), 
+    str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__)
+));
+
 // First, load private config so that we have a db connection if we need one for any initialization.
 if (file_exists('config-private.php')) {
     require_once 'config-private.php';

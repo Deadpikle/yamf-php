@@ -1,5 +1,5 @@
 <?php
-    
+
 if (file_exists('vendor/autoload.php')) {
     require_once 'vendor/autoload.php';
 } else {
@@ -7,19 +7,8 @@ if (file_exists('vendor/autoload.php')) {
     die();
 }
 
-// Setup $app variable for application wide variables that you might need in
-// controllers or in views (e.g. database connection)
-$app = new stdClass;
-
-$whitelist = [
-    '127.0.0.1',
-    '::1'
-];
-
-$app->isLocalHost = in_array($_SERVER['REMOTE_ADDR'], $whitelist);
-$app->basePath = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__));
-
-// load user configuration files
+// load configuration
 require_once 'config.php';
 
+// route the request
 require_once 'yamf/router.php';
