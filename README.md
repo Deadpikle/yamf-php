@@ -13,7 +13,7 @@ Minimum requirements: PHP 7.0+.
 1. Clone the repository.
 2. Make sure your web server is setup to read and utilize .htaccess files. (If you don't know what this means, please Google it! Maybe we'll add some helper links here at a later time.)
 3. Configure `config.php` if necessary. Adjust any parameters that you would like in there or add new parameters to `$app`, such as session logic. By default, you don't need to adjust anything to get your site up and running.
-4. If you have any sort of database credentials, private keys, etc. that need to be used in the website, copy `config-private.sample.php` to `config-private.php` and adjust it to your needs. For instance, you can setup `$app->db` to be a `PDO` instance for your local database. **Note that `config-private.php` will be loaded before anything in `config.php` takes place.
+4. If you have any sort of database credentials, private keys, etc. that need to be used in the website, copy `config-private.sample.php` to `config-private.php` and adjust it to your needs. For instance, you can setup `$app->db` to be a `PDO` instance for your local database. **Note that `config-private.php` will be loaded before anything in `config.php` takes place.**
 5. In order for the `use Yamf/Models/XYZ` statements to work, you'll need to use [Composer](https://getcomposer.org). Using Composer is pretty easy: just go to the [download page](https://getcomposer.org/download/) and run the script at the top. (Note: if you're on Windows, you'll want to follow instructions [here on the intro page](https://getcomposer.org/doc/00-intro.md).)
 6. `composer install` (if you've got a `composer.phar` file in your directory, run `php composer.phar install`). It will sit and think for a minute.
 7. You're done! Enjoy your MVC-based website! You can rip out the default sample items and CSS, of course!
@@ -27,6 +27,17 @@ For a note regarding view templating, see the section on subclassing.
 ## Documentation
 
 If you read the following documentation on YAMF, you'll likely be much better off than just hopping in and trying to read the code yourself. :) It will only take a few minutes, and it's worth it!
+
+### Notes on $app
+
+In order to facilitate easy passing of config parameters, such as database settings, etc., YAMF passes an `$app` variable of class `Yamf\AppConfig` to each Controller function. You can set up this variable to store your database PDO object, change your view extension or folder location, and many other settings. If you want to add your own values to `$app`, you can create a class that derives from `Yamf\AppConfig` and change the `appConfigClass` setting in `config.php` to point to your custom class. Note that your custom class must derive from `Yamf\AppConfig`! See `config.php` to see all of the settings and values that are passed by YAMF through `$app`. Notably, you can:
+
+* Change the location of your views folder (`viewsFolderName`)
+* Change the extension of your view files (`viewExtension`)
+* Change the default header or footer name (`defaultHeaderName`/`defaultFooterName`)
+* Have easy access to your PDO/other database (set up in `config-private.php`)
+
+`$app` is automatically available in your views for you.
 
 ### Adding a new route
 
@@ -87,9 +98,9 @@ If you have ideas for more `Response` types that should be included in YAMF, ple
 
 Two main variables are sent into your controller methods from the route: `$app` and `$request`. **Note that all `View` output will have the `$app` and `$request` variables available to use. You do not need to send them as a `$data` parameter.**
 
-#### `$app`
+#### `AppConfig $app`
 
-`$app` is mainly configuration variables that you've set up in `config.php`. Check that file out for what's available. Some of the more important items are:
+`$app` is mainly configuration variables that you've set up in `config.php`. Check that file out for a quick glance at what's available. Some of the more important items are:
 
 * `$app->db` for a database connection
 * Default header file names for all views, the 404 page, and the error page. You can set these to `null` to avoid using them at all.
@@ -118,6 +129,8 @@ The easiest way for you to extend this framework is to derive from `Response` (o
 ### Static page simplicity
 
 One nifty feature that YAMF supports is static web pages that don't require a `route` or a `controller`. If you want `/about` to just be a simple page, throw an `about.php` page in the `views/static/` folder and -- bam! -- `/about` works on your website. What about subfolders like `/blog/post-name`? That works too! Add a `views/static/blog/post-name.php` file and it Just Works (tm)! You can use this to still have pretty URLs on your website without bothering with adding routes and controllers.
+
+You can configure the static views location in `config.php`.
 
 **Note that the router attempts to match a `router.php` route before checking for static pages.**
 

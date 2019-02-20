@@ -10,10 +10,10 @@ class AppConfig
     public $basePath;
     
     /* Setup in config */
-    public $defaultHeaderName;
-    public $defaultFooterName;
+    public $defaultHeaderName; // defaults to 'header'
+    public $defaultFooterName; // defaults to 'footer'
 
-    public $isShortURLEnabled;
+    public $isShortURLEnabled; // defaults to false
     
     public $staticPageHeaderName; // change this value if you want a different header for static pages
     public $staticPageFooterName; // change this value if you want a different footer for static pages
