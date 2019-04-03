@@ -189,6 +189,11 @@ class Router
                 // since we use PSR-4 and need \ for the "path" to controllers,
                 // we make it easy on users and let them use Parent-Folder/Controller-Name
                 // OR Parent-Folder\\Controller-Name in routes.php.
+                if (Util::strStartsWith($output->controller, '\App') === false &&
+                    Util::strStartsWith($output->controller, 'App\\') === false &&
+                    Util::strStartsWith($output->controller, 'App/') === false) {
+                    $output->controller = '\App' . $output->controller;
+                }
                 $output->controller = str_replace('/', '\\', $output->controller);
                 $output->routeParams = $foundParams;
                 $output->get = $getParams;

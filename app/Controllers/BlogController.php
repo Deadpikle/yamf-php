@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Models\BlogPost;
+use App\Models\BlogPost;
 
 use Yamf\Request;
 use Yamf\AppConfig;

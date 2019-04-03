@@ -13,6 +13,7 @@
 
     // All controllers belong in the 'controllers' folder.
     // Nested controller names can be used (e.g. API/DownloadAPIController).
+    // You do not need to add the App/ folder to the controller name.
 
     // Make sure route URLs with parameters (e.g. {id} and {userID}) use different names for each param,
     // otherwise the parameters will override one another!

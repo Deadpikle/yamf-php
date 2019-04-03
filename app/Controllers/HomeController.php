@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
 use Yamf\AppConfig;
 use Yamf\Request;

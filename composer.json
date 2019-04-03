@@ -8,8 +8,7 @@
     "autoload": {
         "psr-4": {
             "Yamf\\": "yamf/",
-            "Controllers\\": "controllers/",
-            "Models\\": "models/"
+            "App\\": "app/"
         }
     }
 }
