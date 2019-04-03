@@ -10,7 +10,7 @@ Minimum requirements: PHP 7.0+.
 2. Make sure your web server is setup to read and utilize .htaccess files. (If you don't know what this means, please Google it! Maybe we'll add some helper links here at a later time.)
 3. Configure `config.php` if necessary. Adjust any parameters that you would like in there or add new parameters to `$app`, such as session logic. By default, you don't need to adjust anything to get your site up and running.
 4. If you have any sort of database credentials, private keys, etc. that need to be used in the website, copy `config-private.sample.php` to `config-private.php` and adjust it to your needs. For instance, you can setup `$app->db` to be a `PDO` instance for your local database. **Note that `config-private.php` will be loaded before anything in `config.php` takes place.**
-5. In order for the `use Yamf/Models/XYZ` statements to work, you'll need to use [Composer](https://getcomposer.org). Using Composer is pretty easy: just go to the [download page](https://getcomposer.org/download/) and run the script at the top. (Note: if you're on Windows, you'll want to follow instructions [here on the intro page](https://getcomposer.org/doc/00-intro.md).)
+5. In order for the `use Yamf/XYZ` statements to work, you'll need to use [Composer](https://getcomposer.org). Using Composer is pretty easy: just go to the [download page](https://getcomposer.org/download/) and run the script at the top. (Note: if you're on Windows, you'll want to follow instructions [here on the intro page](https://getcomposer.org/doc/00-intro.md).)
 6. `composer install` (if you've got a `composer.phar` file in your directory, run `php composer.phar install`). It will sit and think for a minute.
 7. You're done! Enjoy your MVC-based website! You can rip out the default sample items and CSS, of course!
 
@@ -39,7 +39,7 @@ In order to facilitate easy passing of config parameters, such as database setti
 
 The first thing you'll probably want to do is add a new route. To do that, follow these steps:
 
-1. If you don't already have a controller class for your new route, go ahead and add one in the `controllers` folder of the project. Subfolders are OK. The controller doesn't actually have to have `Controller` in the name, but make sure the class name matches the file name.
+1. If you don't already have a controller class for your new route, go ahead and add one in the `app/Controllers` folder of the project. Subfolders are OK. The controller doesn't actually have to have `Controller` in the name, but make sure the class name matches the file name.
 2. Add a stub for your controller method. At the very least, it must be a `public` function that takes two parameters: `$app` and `$request` (in that order).
 3. Open up `routes.php` and make sure you understand the documentation and examples of how routes work.
 4. Add your route to the `routes` array. 
@@ -47,25 +47,25 @@ The first thing you'll probably want to do is add a new route. To do that, follo
     * The controller name string has to match the file name and class name for the controller from step one. 
     * If the controller is in a subfolder (or subfolders), make sure you have the name in a `Parent-Folder/Controller-Name` format. 
     * The function name should match the function name from step 2.
-5. At this point, the route is working, but your controller method needs to return some kind of `yamf/models/Response`, which can be anything from a `View` to a JSON response to, well, whatever you want, really. See the next section for more info here. 
-6. Your normal use case is probably returning a `yamf/models/View`. Create a PHP file (view) in the `views` folder -- again, subfolders are OK -- and, in your controller method, `return new View('name/of/view');`.
+5. At this point, the route is working, but your controller method needs to return some kind of `yamf/Responses/Response`, which can be anything from a `View` to a JSON response to, well, whatever you want, really. See the next section for more info here. 
+6. Your normal use case is probably returning a `yamf/Responses/View`. Create a PHP file (view) in the `views` folder -- again, subfolders are OK -- and, in your controller method, `return new View('name/of/view');`.
 7. The route should now be functional! 
 
 In short:
 
-1. Add controller and controller method to the `controllers` folder
+1. Add controller and controller method to the `app/Controllers` folder
 2. Add route to `routes.php`
 3. Create view in `views` folder if necessary
 4. Modify controller method to `return new View('name/of/view');` 
 
 ### Return types from controller functions
 
-All controller methods that are called as a result of a route should return a `yamf/models/Response` or a subclass of said class. Here are some descriptions on how to use each one. Most can be used in one line with just the constructor.
+All controller methods that are called as a result of a route should return a `yamf/Responses/Response` or a subclass of said class. Here are some descriptions on how to use each one. Most can be used in one line with just the constructor.
 
 * `Response` -- the base class for a response from a route. 
     * Constructor format: `new Response($statusCode = 200)` 
     * Outputs the status code.
-    * Since all other `yamf/models/Response` items subclass from this parent class, they can all return a custom HTTP status code, if you want!
+    * Since all other `yamf/Responses/Response` items subclass from this parent class, they can all return a custom HTTP status code, if you want!
 * `ErrorMessage` -- simple wrapper around View to send back a 400 status code and the error.php view.
     * Constructor format: `new ErrorMessage($msg = '', $name = 'error', $title = '', $headerName = '', $footerName = '')`. `$name` is the name of the view.
     * Note that the first parameter is the error message, not the name of the view!
@@ -108,7 +108,7 @@ In addition to those, there are two variables available that are set up in `init
 
 #### `$request`
 
-`$request` is going to have all your data about your route and the different parameters that have come in with your request. It's of type `yamf/models/Request`. It has these public members available:
+`$request` is going to have all your data about your route and the different parameters that have come in with your request. It's of type `yamf/Request`. It has these public members available:
 
 * `$request->route` -- raw route string for this request
 * `$request->controller` -- string name of controller
