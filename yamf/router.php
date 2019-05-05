@@ -61,7 +61,12 @@ class Router
                     $fixedPath = implode('/', $pathParts);
                     $potentialFileName = $app->staticViewsFolderName . $fixedPath . $app->staticViewExtension;
                     if (file_exists($potentialFileName)) {
-                        $title = ucfirst($pathParts[$pathCount - 1]);
+                        $name = $pathParts[$pathCount - 1];
+                        $nameParts = explode('-', $name);
+                        for ($i = 0; $i < count($nameParts); $i++) {
+                            $nameParts[$i] = ucfirst($nameParts[$i]);
+                        }
+                        $title = implode(' ', $nameParts);
                         if ($app->staticPageHeaderName != null) {
                             require_once $app->viewsFolderName . $app->staticPageHeaderName . $app->staticViewExtension;
                         }
