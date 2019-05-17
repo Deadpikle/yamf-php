@@ -19,6 +19,7 @@ class JsonResponse extends Response
     public function output(AppConfig $app)
     {
         parent::output($app);
+        header('Content-Type: application/json; charset=utf-8');
         echo json_encode($this->data, $this->jsonEncodeOptions);
     }
 }
