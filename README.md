@@ -6,7 +6,7 @@ YAMF (Yet Another MVC Framework) is a small PHP MVC framework designed to let yo
 
 Minimum requirements: PHP 7.0+.
 
-1. Clone the repository.
+1. Clone the repository and/or [use this project as a template for your own project](https://github.com/Deadpikle/yamf-php/generate) by clicking [this link](https://github.com/Deadpikle/yamf-php/generate) or by clicking the `Use this template` button on the main project repo page.
 2. Make sure your web server is setup to read and utilize .htaccess files. (If you don't know what this means, please Google it! Maybe we'll add some helper links here at a later time.)
 3. Configure `config.php` if necessary. Adjust any parameters that you would like in there or add new parameters to `$app`, such as session logic. By default, you don't need to adjust anything to get your site up and running.
 4. If you have any sort of database credentials, private keys, etc. that need to be used in the website, copy `config-private.sample.php` to `config-private.php` and adjust it to your needs. For instance, you can setup `$app->db` to be a `PDO` instance for your local database. **Note that `config-private.php` will be loaded before anything in `config.php` takes place.**
