@@ -16,7 +16,6 @@
 // release notes when updating YAMF versions so that you're aware of any changes that
 // have been made!
 
-
 // Initialize AppConfig object
 
 // If you want to change the class for $app, your class *must* derive from Yamf\AppConfig
@@ -27,10 +26,19 @@ $whitelist = [
     '::1'
 ];
 
+$docRoot = $_SERVER['DOCUMENT_ROOT'];
+$dirNameFile = dirname(__FILE__);
+
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    // Unfortunately, Windows puts \ into dirname(__FILE__), which messes up routing.
+    // Checking if we're on Windows: https://stackoverflow.com/a/5879078/3938401
+    $dirNameFile = str_replace('\\', '/', $dirNameFile);
+}
+
 $app = new $appConfigClass(
     in_array($_SERVER['REMOTE_ADDR'], $whitelist), 
-    str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__)
-));
+    str_replace($docRoot, '', $dirNameFile)
+);
 
 // First, load private config so that we have a db connection if we need one for any initialization.
 if (file_exists('config-private.php')) {
