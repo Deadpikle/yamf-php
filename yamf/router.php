@@ -25,7 +25,11 @@ class Router
             die();
         }
 
-        $requestURL = str_replace($app->basePath, '', $request);
+        // replace first occurance of $app->basePath in $request
+        $pos = strpos($request, $app->basePath);
+        if ($pos !== false) {
+            $requestURL = substr_replace($request, '', $pos, strlen($app->basePath));
+        }
 
         $request = $this->findRoute($routes, $requestURL);
         if ($request !== null) {
