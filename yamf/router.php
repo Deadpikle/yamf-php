@@ -29,6 +29,8 @@ class Router
         $pos = strpos($request, $app->basePath);
         if ($pos !== false) {
             $requestURL = substr_replace($request, '', $pos, strlen($app->basePath));
+        } else {
+            $requestURL = $request;
         }
 
         $request = $this->findRoute($routes, $requestURL);
