@@ -7,9 +7,10 @@
     // 'route' => [['GET', 'FooController', 'get_method'],
     //             ['POST', 'BarController', 'post_method']]
 
-    // 'GET' is optional, but 'POST' is required in the route definition for post requests.
-    // We only accept GET and POST at the moment.
-    // 'GET' and 'POST' do not need to be in all caps.
+    // 'GET' is optional and is the default, 
+    // but 'POST'/etc. are required in the route definition for all other request types.
+    // Accepted request types: GET, POST, PATCH, PUT, DELETE.
+    // Request types (GET, etc.) do not need to be in all caps.
 
     // All controllers belong in the 'controllers' folder.
     // Nested controller names can be used (e.g. API/DownloadAPIController).

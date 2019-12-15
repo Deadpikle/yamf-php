@@ -108,8 +108,6 @@ class Router
      */
     function findRoute(array $routes, string $request)
     {
-        $isPost = Util::isPostRequest();
-
         // Need to make sure # and ? in URL are handled properly and one doesn't interfere with the other!
         $anchorOnPage = parse_url($request, PHP_URL_FRAGMENT); // http://.../blog#comments (#comments)
         if ($anchorOnPage !== null) {
@@ -134,6 +132,7 @@ class Router
         $requestParts = explode('/', $request);
         Util::removeEmptyStringsFromArray($requestParts);
         $numberOfRequestParts = count($requestParts);
+        $requestMethod = Util::getRequestMethod();
         // find the route
         foreach ($routes as $route => $path) {
             $routeParts = explode('/', $route);
@@ -149,21 +148,16 @@ class Router
                 // potentially multiple GET/POST routes defined for this route
                 foreach ($path as $potentialPath) {
                     if (count($potentialPath) === 3) { // safety
-                        if (strtolower($potentialPath[0]) == 'get' && !$isPost) {
-                            $path = $potentialPath;
-                            break;
-                        } elseif (strtolower($potentialPath[0]) == 'post' && $isPost) {
+                        if (strtolower($potentialPath[0]) === strtolower($requestMethod)) {
                             $path = $potentialPath;
                             break;
                         }
                     }
                 }
-            } elseif (count($path) == 2 && $isPost) {
+            } elseif (count($path) == 2 && !Util::isGetRequest()) {
                 continue; // didn't match up as the route is a GET route
             } elseif (count($path) === 3) {
-                if (strtolower($path[0]) === 'get' && $isPost) {
-                    continue;
-                } elseif (strtolower($path[0]) === 'post' && !$isPost) {
+                if (strtolower($potentialPath[0]) !== strtolower($requestMethod)) {
                     continue;
                 }
             }
