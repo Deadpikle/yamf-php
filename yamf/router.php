@@ -2,6 +2,7 @@
 
 namespace Yamf;
 
+use Exception;
 use PDO;
 
 use Yamf\Util;
@@ -43,16 +44,7 @@ class Router
                     $data->output($app);
                 }
             } catch (\Exception $e) {
-                if (isset($app->shouldShowErrorOnExceptionThrown)) {
-                    if ($app->shouldShowErrorOnExceptionThrown) {
-                        $response = new ErrorMessage($e->getMessage());
-                        $response->statusCode = 500;
-                    }
-                    else {
-                        $response = new Response(500);
-                    }
-                    $response->output($app);
-                }
+                $this->showErrorOnException($app, $e);
             }
         } else {
             // see if there is a static URL or shortened URL
@@ -105,6 +97,26 @@ class Router
     {
         $notFound = new NotFound();
         $notFound->output($app);
+    }
+
+    /**
+     * Shows an error on routing exception
+     * 
+     * @param AppConfig $app
+     * @param Exception $e
+     */
+    public function showErrorOnException(AppConfig $app, Exception $e) : void
+    {
+        if (isset($app->shouldShowErrorOnExceptionThrown)) {
+            if ($app->shouldShowErrorOnExceptionThrown) {
+                $response = new ErrorMessage($e->getMessage());
+                $response->statusCode = 500;
+            }
+            else {
+                $response = new Response(500);
+            }
+            $response->output($app);
+        }
     }
 
     /**
