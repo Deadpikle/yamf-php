@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/litera/bootstrap.min.css" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="{{ app.yurl('/css/common.css') }}?{{ filemtime('css/common.css') }}" />
+
+        <meta property="og:title" content="{{ title != null ? title ~ ' - AFM Recruiter ' | default('AFM Recruiter') }}" />
+        <meta property="og:site_name" content="Recruiter" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>{{ title ~ ' - AFM Recruiter ' | default('AFM Recruiter') }}</title>
+    </head>
+    <body>
+                            
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ app.basePath == '' ? '/' : app.basePath }}">AFM Recruiter</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            {{ navbar_link(app, 'Home', '/', app.basePath) | raw }}
+                            {{ navbar_link(app, 'Blog', '/blog', app.basePath) | raw }}
+                            {{ navbar_link(app, 'About', '/about', app.basePath) | raw }}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="container">
+                <div id="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <p id="footer-text">© <a href="https://github.com/Deadpikle/YAMF" target="_blank">YAMF</a> 2018 | <a href="https://github.com/Deadpikle" target="_blank">Creator's GitHub</a> | <a href="https://stackoverflow.com/users/3938401/deadpikle" target="_blank">Creator's Stack Overflow</a>
+            </div>
+        </footer>
+    </body>
+</html>

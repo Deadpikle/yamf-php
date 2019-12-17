@@ -1,0 +1,17 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+
+<h3 id="main-site-text">YAMF Blog for Demo Purposes</h3>
+
+<div id="author-controls">
+    <a class="btn btn-primary" href="{{ app.yurl('/blog/write') }}">Write post</a>
+</div>
+<hr>
+{% for post in posts %}
+    <h4><a href="{{ app.yurl('/blog/' ~ post.id) }}">{{ post.title }}</a></h4>
+    <p class="blog-preview">{{ post.preview }} | <a href="{{ app.yurl('/blog/' ~ post.id) }}">Read me!</a></p>
+    <hr>
+{% endfor %}
+
+{% endblock %}

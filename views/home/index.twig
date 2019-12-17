@@ -1,4 +1,9 @@
-<div id="index">
-    <h2 id="main-site-text">Welcome to YAMF!</h2>
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+
+<div id="index" style="margin-top:1em;">
+    <h2 id="main-site-text">Welcome to YAMF, {{ name }}!</h2>
     <p class="message">Hi! Thanks for checking out YAMF, aka Yet Another MVC Framework! YAMF is a small and simple MVC framework to act as a quick-start for your simple PHP applications. There are no external dependencies other than <a href="https://getcomposer.org" target="_blank">Composer's</a> autoloader, so if you're looking for a framework that has many features built in already, please try something like <a href="https://laravel.com" target="_blank">Laravel</a> or <a href="https://cakephp.org" target="_blank">CakePHP</a> or similar frameworks. Otherwise, start grabbing your dependencies that you want with Composer and get started!</p>
 </div>
+{% endblock %}

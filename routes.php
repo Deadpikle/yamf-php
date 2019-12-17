@@ -58,6 +58,7 @@
     $routes = [
         '/' => ['HomeController', 'index'],
         '/index' => ['HomeController', 'index'],
+        '/about' => ['HomeController', 'about'],
         '/blog' => ['BlogController', 'index'],
         '/blog/write' => ['BlogController', 'writePost'],
         '/blog/{id}' => ['BlogController', 'viewPost'],
