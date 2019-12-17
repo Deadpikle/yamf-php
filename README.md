@@ -122,6 +122,8 @@ In addition to those, there are two variables available that are set up in `init
 
 The easiest way for you to extend this framework is to derive from `Response` (or some other `Response` child class) and/or create a parent class for some of your controllers. For example, by deriving from `View`, you could change the view output to use the [Twig](https://twig.symfony.com/) templating engine instead of just simple PHP output. By creating a parent class for your controllers, you could add things like validation or other extra processing of data that has to happen for all of your API routes, such as verifying a username/password or token. The options are endless and the potential great!
 
+There's an example of using Twig instead of raw PHP on the Twig branch!
+
 ### Static page simplicity
 
 One nifty feature that YAMF supports is static web pages that don't require a `route` or a `controller`. If you want `/about` to just be a simple page, throw an `about.php` page in the `views/static/` folder and -- bam! -- `/about` works on your website. What about subfolders like `/blog/post-name`? That works too! Add a `views/static/blog/post-name.php` file and it Just Works (tm)! You can use this to still have pretty URLs on your website without bothering with adding routes and controllers.
