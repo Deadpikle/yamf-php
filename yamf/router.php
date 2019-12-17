@@ -92,9 +92,19 @@ class Router
                 }
             }
             // couldn't determine route
-            $notFound = new NotFound();
-            $notFound->output($app);
+            $this->showNotFound($app);
         }
+    }
+
+    /**
+     * Shows the 404 not found page
+     * 
+     * @param AppConfig $app
+     */
+    public function showNotFound(AppConfig $app) : void
+    {
+        $notFound = new NotFound();
+        $notFound->output($app);
     }
 
     /**
