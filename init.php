@@ -16,5 +16,5 @@ require_once 'config.php';
 require_once 'routes.php';
 
 // route the request
-$router = new Router();
+$router = new $app->routerClass();
 $router->route($app, $routes);
