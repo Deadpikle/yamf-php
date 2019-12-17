@@ -26,6 +26,8 @@ class AppConfig
     public $staticViewsFolderName; // this is the folder path (including trailing slash) from the root dir to the static views directory
     public $viewExtension; // change this value if you want to use a different file extension for your views
     public $staticViewExtension; // change this value if you want to use a different file extension for your static views
+
+    public $routerClass; // override this value to use your own custom Router child class
     
     /* Setup in config-private */
     public $db; // set up in config-private.php
