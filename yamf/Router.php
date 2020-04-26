@@ -7,7 +7,7 @@ use PDO;
 
 use Yamf\Util;
 use Yamf\AppConfig;
-
+use Yamf\Interfaces\IRequestValidator;
 use Yamf\Responses\ErrorMessage;
 use Yamf\Responses\NotFound;
 use Yamf\Responses\Response;
@@ -38,10 +38,18 @@ class Router
         if ($request !== null) {
             $controller = new $request->controller;
             try {
-                $data = $controller->{$request->function}($app, $request);
-                if ($data != null) {
-                    /** @var Response $data */
-                    $data->output($app);
+                $validationResponse = null;
+                if ($controller instanceof IRequestValidator) {
+                    $validationResponse = $controller->validateRequest($app, $request);
+                }
+                if ($validationResponse === null) {
+                    $data = $controller->{$request->function}($app, $request);
+                    if ($data != null) {
+                        /** @var Response $data */
+                        $data->output($app);
+                    }
+                } else {
+                    $validationResponse->output($app);
                 }
             } catch (\Exception $e) {
                 $this->showErrorOnException($app, $e);
@@ -179,7 +187,7 @@ class Router
             } elseif (count($path) == 2 && !Util::isGetRequest()) {
                 continue; // didn't match up as the route is a GET route
             } elseif (count($path) === 3) {
-                if (strtolower($path[0]) !== strtolower($requestMethod)) {
+                if (strtolower($potentialPath[0]) !== strtolower($requestMethod)) {
                     continue;
                 }
             }
