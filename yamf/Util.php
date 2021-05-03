@@ -62,7 +62,7 @@ class Util
      * Removes empty strings ('') from an array.
      * Modifies original array
      */
-    public function removeEmptyStringsFromArray(&$arr)
+    public static function removeEmptyStringsFromArray(&$arr)
     {
         for ($i = 0; $i < count($arr); $i++) {
             if ($arr[$i] === '') {
